@@ -1,0 +1,5 @@
+dependencies {
+    implementation 'org.springframework:spring-context:5.2.0.RELEASE'
+    implementation project(':domain-model')
+    implementation group: 'org.reactivecommons', name: 'object-mapper', version: '0.0.5'
+}

@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':domain-model')
+    implementation 'org.springframework.data:spring-data-mongodb'
+    implementation project(":driven-adapters-object-utils")
+}
