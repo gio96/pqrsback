@@ -1,11 +1,11 @@
 package org.btg.gateway;
 
-import org.btg.entities.Peticion;
+import org.btg.entities.Pqr;
 
 import java.util.List;
 
 public interface PeticionGateway {
-    Peticion getPeticion(String idPeticion);
-    List<Peticion> getAllPeticiones(String tipo,String numero);
-    void savePeticion(Peticion peticion);
+    Pqr getPeticion(String idPeticion);
+    List<Pqr> getAllPeticiones(String tipo, String numero);
+    void savePeticion(Pqr pqr);
 }

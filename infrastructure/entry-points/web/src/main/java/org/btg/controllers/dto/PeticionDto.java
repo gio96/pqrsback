@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PeticionDto {
     private String id;
-    private DocumentoIdentificacionDto identificacionCliente;
     private String descripcionPeticion;
+    private String tipoSolicitud;
 }

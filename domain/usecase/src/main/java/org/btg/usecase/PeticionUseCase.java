@@ -1,13 +1,12 @@
 package org.btg.usecase;
 
 import lombok.RequiredArgsConstructor;
-import org.btg.entities.Peticion;
+import org.btg.entities.Pqr;
 import org.btg.gateway.PeticionGateway;
 import org.btg.usecase.exceptions.PeticionException;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -15,48 +14,32 @@ public class PeticionUseCase {
 
     private final PeticionGateway peticionGateway;
 
-    public Peticion getPeticion(String idPeticion) {
+    public Pqr getPeticion(String idPeticion) {
         return peticionGateway.getPeticion(idPeticion);
     }
 
-    public List<Peticion> getAllPeticion(String tipo, String numero) {
+    public List<Pqr> getAllPeticion(String tipo, String numero) {
         return peticionGateway.getAllPeticiones(tipo, numero);
     }
 
-    public void savePeticion(Peticion peticion) {
-        peticionGateway.savePeticion(validarDatosObligatorios(peticion));
+    public void savePeticion(Pqr pqr) {
+        peticionGateway.savePeticion(validarDatosObligatorios(pqr));
     }
 
-    public Peticion validarDatosObligatorios(Peticion peticion) {
-        return Optional.of(peticion)
+    public Pqr validarDatosObligatorios(Pqr pqr) {
+        return Optional.of(pqr)
                 .filter(peticion1 -> !esVacio(peticion1.getDescripcionPeticion()))
-                .filter(peticion1 -> Objects.nonNull(peticion1.getIdentificacionCliente()))
-                .filter(peticion1 -> !esVacio(peticion1.getIdentificacionCliente().getTipo()))
-                .filter(peticion1 -> !esVacio(peticion1.getIdentificacionCliente().getNumero()))
+                .filter(peticion1 -> !esVacio(peticion1.getTipoSolicitud()))
                 .map(this::generarFechaRegistro)
                 .orElseThrow(PeticionException.Type.PETICION_NOT_FULL::build);
     }
 
-    private Peticion generarFechaRegistro(Peticion peticion) {
-        return Peticion.builder()
-                .descripcionPeticion(peticion.getDescripcionPeticion())
-                .identificacionCliente(peticion.getIdentificacionCliente())
+    private Pqr generarFechaRegistro(Pqr pqr) {
+        return Pqr.builder()
+                .descripcionPeticion(pqr.getDescripcionPeticion())
                 .fechaRegistro(new Date())
+                .tipoSolicitud(pqr.getTipoSolicitud())
                 .build();
-    }
-
-    //TODO
-    private boolean validarIdentificacionCliente(Peticion peticion) {
-        if (Objects.nonNull(peticion.getIdentificacionCliente())) {
-            if (esVacio(peticion.getIdentificacionCliente().getNumero()) ||
-                    esVacio(peticion.getIdentificacionCliente().getTipo())) {
-                throw PeticionException.Type.PETICION_NOT_FULL.build();
-            } else {
-                return true;
-            }
-        } else {
-            throw PeticionException.Type.PETICION_NOT_FULL.build();
-        }
     }
 
     private boolean esVacio(String... strings) {

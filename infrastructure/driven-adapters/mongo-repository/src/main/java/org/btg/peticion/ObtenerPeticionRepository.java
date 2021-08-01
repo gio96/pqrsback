@@ -1,7 +1,7 @@
 package org.btg.peticion;
 
 import lombok.RequiredArgsConstructor;
-import org.btg.entities.Peticion;
+import org.btg.entities.Pqr;
 import org.btg.interfaces.PeticionRepositoryDataAdapter;
 import org.btg.utils.mapper.ObjectMapper;
 import org.springframework.stereotype.Repository;
@@ -17,16 +17,16 @@ public class ObtenerPeticionRepository {
     private final PeticionRepositoryDataAdapter peticionRepositoryDataAdapter;
     private final ObjectMapper objectMapper;
 
-    public Optional<Peticion> getPeticion(String idPeticion) {
+    public Optional<Pqr> getPeticion(String idPeticion) {
         return peticionRepositoryDataAdapter.findById(idPeticion)
-                .map(peticionData -> objectMapper.map(peticionData, Peticion.class));
+                .map(peticionData -> objectMapper.map(peticionData, Pqr.class));
     }
 
-    public List<Peticion> getAllPeticion(String tipo, String numero) {
+    public List<Pqr> getAllPeticion(String tipo, String numero) {
         return peticionRepositoryDataAdapter.
-                findAllByIdentificacionClienteNumeroAndIdentificacionClienteTipo(numero, tipo)
+                findAll()
                 .stream()
-                .map(peticionData -> objectMapper.map(peticionData, Peticion.class))
+                .map(peticionData -> objectMapper.map(peticionData, Pqr.class))
                 .collect(Collectors.toList());
     }
 }
