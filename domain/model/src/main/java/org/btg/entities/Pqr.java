@@ -8,10 +8,11 @@ import java.util.Date;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Peticion {
+public class Pqr {
     private String id;
     private Date fechaRegistro;
     private String respuestaAdministrativa;
-    private DocumentoIdentificacion identificacionCliente;
-    private String descripcionPeticion;
+    private String descripcionPqr;
+    private String tipoSolicitud;
+    private Reclamo reclamo;
 }

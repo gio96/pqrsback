@@ -7,18 +7,17 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
-@Document(collection = "Peticion")
 @Builder(toBuilder = true)
-@NoArgsConstructor
 @AllArgsConstructor
-public class PeticionData {
+@NoArgsConstructor
+@Document(collection = "Cliente")
+public class ClienteData {
+
     @Id
     private String id;
-    private Date fechaRegistro;
-    private String respuestaAdministrativa;
-    private DocumentoIdentificacionData identificacionCliente;
-    private String descripcionPeticion;
+    private DocumentoIdentificacionData identificacion;
+    private List<PqrData> pqr;
 }

@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class PeticionDto {
-    private String id;
-    private DocumentoIdentificacionDto identificacionCliente;
-    private String descripcionPeticion;
+public class PqrDto {
+    private String descripcionPqr;
+    private String tipoSolicitud;
 }
