@@ -1,19 +1,16 @@
 package org.btg.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Builder(toBuilder = true)
-@AllArgsConstructor
 @NoArgsConstructor
-public class Reclamo {
-    private String idReclamo;
-    private String descripcionReclamo;
-    private Date fechaReclamo;
-    private String respuestaAdministrativa;
+public class Reclamo extends Pqr{
+
+    @Builder(builderMethodName = "reclamoBuilder")
+    public Reclamo(String id, Date fechaSolicitud, String respuestaAdministrativa, String descripcionSolicitud) {
+        super(id, fechaSolicitud, respuestaAdministrativa, descripcionSolicitud);
+    }
 }

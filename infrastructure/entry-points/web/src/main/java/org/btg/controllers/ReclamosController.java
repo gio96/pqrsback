@@ -22,8 +22,8 @@ public class ReclamosController {
 
     @PostMapping("/{idPeticion}/reclamo")
     public void saveReclamo(@PathVariable String idPeticion, @RequestBody ReclamoDto reclamoDto) {
-        reclamoUseCase.saveReclamo(idPeticion, Reclamo.builder()
-                .descripcionReclamo(reclamoDto.getDescripcionReclamo())
+        reclamoUseCase.saveReclamo(idPeticion, Reclamo.reclamoBuilder()
+                .descripcionSolicitud(reclamoDto.getDescripcionReclamo())
                 .build());
     }
 }

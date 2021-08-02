@@ -5,14 +5,11 @@ import lombok.*;
 import java.util.Date;
 
 @Data
-@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pqr {
+public abstract class Pqr {
     private String id;
-    private Date fechaRegistro;
+    private Date fechaSolicitud;
     private String respuestaAdministrativa;
-    private String descripcionPeticion;
-    private String tipoSolicitud;
-    private Reclamo reclamo;
+    private String descripcionSolicitud;
 }

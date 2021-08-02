@@ -1,6 +1,7 @@
 package org.btg.usecase;
 
 import lombok.RequiredArgsConstructor;
+import org.btg.entities.Solicitud;
 import org.btg.entities.Pqr;
 import org.btg.gateway.PeticionGateway;
 import org.btg.usecase.exceptions.PeticionException;
@@ -9,27 +10,44 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static org.btg.usecase.StringUtils.esVacio;
+
 @RequiredArgsConstructor
 public class PeticionUseCase {
 
     private final PeticionGateway peticionGateway;
 
-    public Pqr getPeticion(String idPeticion) {
-        return peticionGateway.getPeticion(idPeticion);
+    public Solicitud getPeticion(String idPeticion) {
+        return peticionGateway.getSolicitud(idPeticion);
     }
 
-    public List<Pqr> getAllPeticion(String tipo, String numero) {
-        return peticionGateway.getAllPeticiones(tipo, numero);
+    public List<Solicitud> getAllPeticion(String tipo, String numero) {
+        return peticionGateway.getAllSolicitud(tipo, numero);
     }
 
-    public void savePeticion(Pqr pqr) {
-        peticionGateway.savePeticion(validarDatosObligatorios(pqr));
+    public void saveSolicitud(Solicitud solicitud) {
+        peticionGateway.saveSolicitud(validarDatosObligatorios(solicitud));
     }
 
-    public Pqr validarDatosObligatorios(Pqr pqr) {
+    public Solicitud validarDatosObligatorios(Solicitud solicitud) {
+        return Optional.of(solicitud)
+                .filter(solicitud1 -> !esVacio(solicitud1.getDescripcionSolicitud()))
+                //TODO validar tipoSolicitud
+                .map(this::generarFechaRegistro)
+                .orElseThrow(PeticionException.Type.PETICION_NOT_FULL::build);
+    }
+
+    private Solicitud generarFechaRegistro(Solicitud solicitud) {
+        return Solicitud.solicitudBuilder()
+                .descripcionSolicitud(solicitud.getDescripcionSolicitud())
+                .fechaSolicitud(new Date())
+                .tipoSolicitud(solicitud.getTipoSolicitud())
+                .build();
+    }
+
+    /*public Pqr validarDatosObligatorios(Pqr pqr) {
         return Optional.of(pqr)
                 .filter(peticion1 -> !esVacio(peticion1.getDescripcionPeticion()))
-                .filter(peticion1 -> !esVacio(peticion1.getTipoSolicitud()))
                 .map(this::generarFechaRegistro)
                 .orElseThrow(PeticionException.Type.PETICION_NOT_FULL::build);
     }
@@ -38,20 +56,7 @@ public class PeticionUseCase {
         return Pqr.builder()
                 .descripcionPeticion(pqr.getDescripcionPeticion())
                 .fechaRegistro(new Date())
-                .tipoSolicitud(pqr.getTipoSolicitud())
+                .tipoSolicitud("Peticion")
                 .build();
-    }
-
-    private boolean esVacio(String... strings) {
-        boolean vacio = false;
-        for (String str : strings) {
-            vacio = vacio || esVacio(str);
-        }
-        return vacio;
-    }
-
-    private boolean esVacio(String value) {
-        return value == null || value.isEmpty();
-    }
-
+    }*/
 }
