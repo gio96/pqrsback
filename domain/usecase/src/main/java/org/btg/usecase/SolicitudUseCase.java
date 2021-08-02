@@ -3,7 +3,7 @@ package org.btg.usecase;
 import lombok.RequiredArgsConstructor;
 import org.btg.entities.Solicitud;
 import org.btg.gateway.SolicitudGateway;
-import org.btg.usecase.exceptions.PeticionException;
+import org.btg.usecase.exceptions.SolicitudException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,8 +20,8 @@ public class SolicitudUseCase {
         return solicitudGateway.getSolicitud(idPeticion);
     }
 
-    public List<Solicitud> getAllSolicitud(String tipo, String numero) {
-        return solicitudGateway.getAllSolicitud(tipo, numero);
+    public List<Solicitud> getAllSolicitud() {
+        return solicitudGateway.getAllSolicitud();
     }
 
     public void saveSolicitud(Solicitud solicitud) {
@@ -33,7 +33,7 @@ public class SolicitudUseCase {
                 .filter(solicitud1 -> !esVacio(solicitud1.getDescripcionSolicitud()))
                 //TODO validar tipoSolicitud
                 .map(this::generarFechaRegistro)
-                .orElseThrow(PeticionException.Type.PETICION_NOT_FULL::build);
+                .orElseThrow(SolicitudException.Type.SOLICITUD_NOT_FULL::build);
     }
 
     private Solicitud generarFechaRegistro(Solicitud solicitud) {

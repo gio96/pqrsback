@@ -19,8 +19,8 @@ public class SolicitudController {
     private final ObjectMapper objectMapper;
 
     @GetMapping()
-    public List<Solicitud> getAllPeticiones(@RequestParam(name = "tipo") String tipo, @RequestParam(name = "numero") String numero) {
-        return solicitudUseCase.getAllSolicitud(tipo, numero);
+    public List<Solicitud> getAllSolicitud() {
+        return solicitudUseCase.getAllSolicitud();
     }
 
     @GetMapping("/{idSolicitud}")

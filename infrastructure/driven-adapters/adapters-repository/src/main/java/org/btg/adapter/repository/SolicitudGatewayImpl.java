@@ -7,7 +7,6 @@ import org.btg.peticion.GuardarSolicitudRepository;
 import org.btg.peticion.ObtenerSolicitudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -24,9 +23,8 @@ public class SolicitudGatewayImpl implements SolicitudGateway {
     }
 
     @Override
-    public List<Solicitud> getAllSolicitud(String tipo, String numero) {
-        return Collections.singletonList(Solicitud.solicitudBuilder().build());
-        //return obtenerPeticionRepository.getAllPeticion(tipo, numero);
+    public List<Solicitud> getAllSolicitud() {
+        return obtenerSolicitudRepository.getAllPeticion();
     }
 
     @Override

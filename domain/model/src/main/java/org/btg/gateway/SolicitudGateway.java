@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SolicitudGateway {
     Solicitud getSolicitud(String idSolicitud);
-    List<Solicitud> getAllSolicitud(String tipo, String numero);
+    List<Solicitud> getAllSolicitud();
     void saveSolicitud(Solicitud solicitud);
 }

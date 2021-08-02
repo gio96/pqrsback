@@ -1,16 +1,16 @@
 package org.btg.usecase.exceptions;
 
-public class PeticionException extends RuntimeException {
+public class SolicitudException extends RuntimeException {
     public enum Type {
-        PETICION_NOT_FOUND("La peticion no existe", 404),
-        PETICION_NOT_UPDATE("La peticion no se puede actualizar", 412),
-        PETICION_NOT_FULL("La peticion fue mal formada", 500);
+        PETICION_NOT_FOUND("La Solicitud no existe", 404),
+        PETICION_NOT_UPDATE("La Solicitud no se puede actualizar", 412),
+        SOLICITUD_NOT_FULL("La Solicitud fue mal formada", 500);
 
         private final String message;
         private final Integer status;
 
-        public PeticionException build() {
-            return new PeticionException(this);
+        public SolicitudException build() {
+            return new SolicitudException(this);
         }
 
         Type(String message, Integer status) {
@@ -27,14 +27,14 @@ public class PeticionException extends RuntimeException {
         }
     }
 
-    private final PeticionException.Type type;
+    private final SolicitudException.Type type;
 
-    private PeticionException(PeticionException.Type type) {
+    private SolicitudException(SolicitudException.Type type) {
         super(type.message);
         this.type = type;
     }
 
-    public PeticionException.Type getType() {
+    public SolicitudException.Type getType() {
         return type;
     }
 }

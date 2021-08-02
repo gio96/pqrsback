@@ -1,7 +1,6 @@
 package org.btg.peticion;
 
 import lombok.RequiredArgsConstructor;
-import org.btg.entities.Pqr;
 import org.btg.entities.Solicitud;
 import org.btg.interfaces.SolicitudRepositoryDataAdapter;
 import org.btg.utils.mapper.ObjectMapper;
@@ -23,11 +22,11 @@ public class ObtenerSolicitudRepository {
                 .map(solicitudData -> objectMapper.map(solicitudData, Solicitud.class));
     }
 
-    public List<Pqr> getAllPeticion(String tipo, String numero) {
+    public List<Solicitud> getAllPeticion() {
         return solicitudRepositoryDataAdapter.
                 findAll()
                 .stream()
-                .map(peticionData -> objectMapper.map(peticionData, Pqr.class))
+                .map(solicitudData -> objectMapper.map(solicitudData, Solicitud.class))
                 .collect(Collectors.toList());
     }
 }
