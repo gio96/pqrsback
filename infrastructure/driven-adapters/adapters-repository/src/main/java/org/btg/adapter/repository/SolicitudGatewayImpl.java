@@ -1,11 +1,10 @@
 package org.btg.adapter.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.btg.entities.Pqr;
 import org.btg.entities.Solicitud;
-import org.btg.gateway.PeticionGateway;
+import org.btg.gateway.SolicitudGateway;
 import org.btg.peticion.GuardarSolicitudRepository;
-import org.btg.peticion.ObtenerPeticionRepository;
+import org.btg.peticion.ObtenerSolicitudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
@@ -13,16 +12,15 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class PeticionGatewayImpl implements PeticionGateway {
+public class SolicitudGatewayImpl implements SolicitudGateway {
 
-    private final ObtenerPeticionRepository obtenerPeticionRepository;
+    private final ObtenerSolicitudRepository obtenerSolicitudRepository;
     private final GuardarSolicitudRepository guardarSolicitudRepository;
 
     @Override
-    public Solicitud getSolicitud(String idPeticion) {
-        return Solicitud.solicitudBuilder().build();
-        //return obtenerPeticionRepository.getPeticion(idPeticion)
-        //        .orElse(Pqr.builder().build());
+    public Solicitud getSolicitud(String idSolicitud) {
+        return obtenerSolicitudRepository.getSolicitud(idSolicitud)
+                .orElse(Solicitud.solicitudBuilder().build());
     }
 
     @Override

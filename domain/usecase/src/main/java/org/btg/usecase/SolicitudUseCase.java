@@ -2,31 +2,30 @@ package org.btg.usecase;
 
 import lombok.RequiredArgsConstructor;
 import org.btg.entities.Solicitud;
-import org.btg.entities.Pqr;
-import org.btg.gateway.PeticionGateway;
+import org.btg.gateway.SolicitudGateway;
 import org.btg.usecase.exceptions.PeticionException;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.btg.usecase.StringUtils.esVacio;
 
 @RequiredArgsConstructor
-public class PeticionUseCase {
+public class SolicitudUseCase {
 
-    private final PeticionGateway peticionGateway;
+    private final SolicitudGateway solicitudGateway;
 
-    public Solicitud getPeticion(String idPeticion) {
-        return peticionGateway.getSolicitud(idPeticion);
+    public Solicitud getSolicitud(String idPeticion) {
+        return solicitudGateway.getSolicitud(idPeticion);
     }
 
-    public List<Solicitud> getAllPeticion(String tipo, String numero) {
-        return peticionGateway.getAllSolicitud(tipo, numero);
+    public List<Solicitud> getAllSolicitud(String tipo, String numero) {
+        return solicitudGateway.getAllSolicitud(tipo, numero);
     }
 
     public void saveSolicitud(Solicitud solicitud) {
-        peticionGateway.saveSolicitud(validarDatosObligatorios(solicitud));
+        solicitudGateway.saveSolicitud(validarDatosObligatorios(solicitud));
     }
 
     public Solicitud validarDatosObligatorios(Solicitud solicitud) {
@@ -38,9 +37,15 @@ public class PeticionUseCase {
     }
 
     private Solicitud generarFechaRegistro(Solicitud solicitud) {
+        //TODO
+        //LocalDate hoy = LocalDate.now();
+        //Period periodo = Period.ofDays(1);
+        //LocalDate hola = hoy.plus(periodo);
+        //Date prueba = new Date();
+
         return Solicitud.solicitudBuilder()
                 .descripcionSolicitud(solicitud.getDescripcionSolicitud())
-                .fechaSolicitud(new Date())
+                .fechaSolicitud(LocalDate.now())
                 .tipoSolicitud(solicitud.getTipoSolicitud())
                 .build();
     }
