@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface SolicitudRepositoryDataAdapter extends MongoRepository<SolicitudData, String> {
     Optional<SolicitudData> findById(String id);
     List<SolicitudData> findAll();
+    Optional<SolicitudData> findByReclamoId(String idReclamo);
 }

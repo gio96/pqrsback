@@ -22,7 +22,7 @@ public class ReclamoUseCase {
     private final ReclamoGateway reclamoGateway;
     private final SolicitudGateway solicitudGateway;
 
-    public Reclamo getReclamo(String idSolicitud, String idReclamo) {
+    public Solicitud getReclamo(String idSolicitud, String idReclamo) {
         return reclamoGateway.getReclamo(idSolicitud, idReclamo);
     }
 

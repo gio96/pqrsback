@@ -3,6 +3,7 @@ package org.btg.controllers;
 import lombok.RequiredArgsConstructor;
 import org.btg.controllers.dto.ReclamoDto;
 import org.btg.entities.Reclamo;
+import org.btg.entities.Solicitud;
 import org.btg.usecase.ReclamoUseCase;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class ReclamosController {
 
 
     @GetMapping("/{idPeticion}/reclamo/{idReclamo}")
-    public Reclamo getReclamo(@PathVariable String idPeticion, @PathVariable String idReclamo) {
+    public Solicitud getReclamo(@PathVariable String idPeticion, @PathVariable String idReclamo) {
         return reclamoUseCase.getReclamo(idPeticion, idReclamo);
     }
 

@@ -29,4 +29,9 @@ public class ObtenerSolicitudRepository {
                 .map(solicitudData -> objectMapper.map(solicitudData, Solicitud.class))
                 .collect(Collectors.toList());
     }
+
+    public Optional<Solicitud> getReclamoId(String idReclamo) {
+        return solicitudRepositoryDataAdapter.findByReclamoId(idReclamo)
+                .map(solicitudData -> objectMapper.map(solicitudData, Solicitud.class));
+    }
 }
