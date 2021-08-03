@@ -31,37 +31,15 @@ public class SolicitudUseCase {
     public Solicitud validarDatosObligatorios(Solicitud solicitud) {
         return Optional.of(solicitud)
                 .filter(solicitud1 -> !esVacio(solicitud1.getDescripcionSolicitud()))
-                //TODO validar tipoSolicitud
                 .map(this::generarFechaRegistro)
                 .orElseThrow(SolicitudException.Type.SOLICITUD_NOT_FULL::build);
     }
 
     private Solicitud generarFechaRegistro(Solicitud solicitud) {
-        //TODO
-        //LocalDate hoy = LocalDate.now();
-        //Period periodo = Period.ofDays(1);
-        //LocalDate hola = hoy.plus(periodo);
-        //Date prueba = new Date();
-
         return Solicitud.solicitudBuilder()
                 .descripcionSolicitud(solicitud.getDescripcionSolicitud())
                 .fechaSolicitud(LocalDate.now())
                 .tipoSolicitud(solicitud.getTipoSolicitud())
                 .build();
     }
-
-    /*public Pqr validarDatosObligatorios(Pqr pqr) {
-        return Optional.of(pqr)
-                .filter(peticion1 -> !esVacio(peticion1.getDescripcionPeticion()))
-                .map(this::generarFechaRegistro)
-                .orElseThrow(PeticionException.Type.PETICION_NOT_FULL::build);
-    }
-
-    private Pqr generarFechaRegistro(Pqr pqr) {
-        return Pqr.builder()
-                .descripcionPeticion(pqr.getDescripcionPeticion())
-                .fechaRegistro(new Date())
-                .tipoSolicitud("Peticion")
-                .build();
-    }*/
 }

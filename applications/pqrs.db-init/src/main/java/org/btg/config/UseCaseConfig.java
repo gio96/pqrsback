@@ -16,7 +16,7 @@ public class UseCaseConfig {
     }
 
     @Bean
-    public ReclamoUseCase reclamoUseCase(ReclamoGateway reclamoGateway) {
-        return new ReclamoUseCase(reclamoGateway);
+    public ReclamoUseCase reclamoUseCase(ReclamoGateway reclamoGateway, SolicitudGateway solicitudGateway) {
+        return new ReclamoUseCase(reclamoGateway, solicitudGateway);
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api/peticiones", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/solicitud", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class ReclamosController {
 
@@ -20,10 +20,10 @@ public class ReclamosController {
         return reclamoUseCase.getReclamo(idPeticion, idReclamo);
     }
 
-    @PostMapping("/{idPeticion}/reclamo")
-    public void saveReclamo(@PathVariable String idPeticion, @RequestBody ReclamoDto reclamoDto) {
-        reclamoUseCase.saveReclamo(idPeticion, Reclamo.reclamoBuilder()
-                .descripcionSolicitud(reclamoDto.getDescripcionReclamo())
+    @PostMapping("/{idSolicitud}/reclamo")
+    public void saveReclamo(@PathVariable String idSolicitud, @RequestBody ReclamoDto reclamoDto) {
+        reclamoUseCase.saveReclamo(idSolicitud, Reclamo.reclamoBuilder()
+                .descripcionSolicitud(reclamoDto.getDescripcionSolicitud())
                 .build());
     }
 }
