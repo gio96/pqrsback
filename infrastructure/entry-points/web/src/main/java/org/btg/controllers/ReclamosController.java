@@ -16,9 +16,9 @@ public class ReclamosController {
     private final ReclamoUseCase reclamoUseCase;
 
 
-    @GetMapping("/{idPeticion}/reclamo/{idReclamo}")
-    public Solicitud getReclamo(@PathVariable String idPeticion, @PathVariable String idReclamo) {
-        return reclamoUseCase.getReclamo(idPeticion, idReclamo);
+    @GetMapping("/{idSolicitud}/reclamo/{idReclamo}")
+    public Solicitud getReclamo(@PathVariable String idSolicitud, @PathVariable String idReclamo) {
+        return reclamoUseCase.getReclamo(idSolicitud, idReclamo);
     }
 
     @PostMapping("/{idSolicitud}/reclamo")
