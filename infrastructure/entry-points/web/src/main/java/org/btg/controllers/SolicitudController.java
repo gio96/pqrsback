@@ -18,16 +18,19 @@ public class SolicitudController {
     private final SolicitudUseCase solicitudUseCase;
     private final ObjectMapper objectMapper;
 
+    @CrossOrigin(origins = "*")
     @GetMapping()
     public List<Solicitud> getAllSolicitud() {
         return solicitudUseCase.getAllSolicitud();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{idSolicitud}")
     public Solicitud getSolicitud(@PathVariable String idSolicitud) {
         return solicitudUseCase.getSolicitud(idSolicitud);
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping()
     public void saveSolicitud(@RequestBody SolicitudDto solicitudDto) {
         solicitudUseCase.saveSolicitud(objectMapper

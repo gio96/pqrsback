@@ -16,11 +16,13 @@ public class ReclamosController {
     private final ReclamoUseCase reclamoUseCase;
 
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{idSolicitud}/reclamo/{idReclamo}")
     public Solicitud getReclamo(@PathVariable String idSolicitud, @PathVariable String idReclamo) {
         return reclamoUseCase.getReclamo(idSolicitud, idReclamo);
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/{idSolicitud}/reclamo")
     public void saveReclamo(@PathVariable String idSolicitud, @RequestBody ReclamoDto reclamoDto) {
         reclamoUseCase.saveReclamo(idSolicitud, Reclamo.reclamoBuilder()
