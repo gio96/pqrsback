@@ -4,22 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.btg.entities.DocumentoIdentificacion;
+import org.btg.entities.Reclamo;
+import org.btg.entities.TipoSolicitud;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
-@Document(collection = "Peticion")
+@Document(collection = "Solicitud")
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class PeticionData {
+public class SolicitudData {
     @Id
     private String id;
-    private Date fechaRegistro;
+    private LocalDate fechaSolicitud;
     private String respuestaAdministrativa;
-    private DocumentoIdentificacion identificacionCliente;
-    private String descripcionPeticion;
+    private String descripcionSolicitud;
+    private TipoSolicitud tipoSolicitud;
+    private Reclamo reclamo;
 }

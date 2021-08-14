@@ -1,8 +1,8 @@
 package org.btg.config;
 
-import org.btg.gateway.PeticionGateway;
+import org.btg.gateway.SolicitudGateway;
 import org.btg.gateway.ReclamoGateway;
-import org.btg.usecase.PeticionUseCase;
+import org.btg.usecase.SolicitudUseCase;
 import org.btg.usecase.ReclamoUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfig {
 
     @Bean
-    public PeticionUseCase peticionUseCase(PeticionGateway peticionGateway) {
-        return new PeticionUseCase(peticionGateway);
+    public SolicitudUseCase peticionUseCase(SolicitudGateway solicitudGateway) {
+        return new SolicitudUseCase(solicitudGateway);
     }
 
     @Bean
-    public ReclamoUseCase reclamoUseCase(ReclamoGateway reclamoGateway) {
-        return new ReclamoUseCase(reclamoGateway);
+    public ReclamoUseCase reclamoUseCase(ReclamoGateway reclamoGateway, SolicitudGateway solicitudGateway) {
+        return new ReclamoUseCase(reclamoGateway, solicitudGateway);
     }
 }
