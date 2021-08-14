@@ -34,4 +34,11 @@ public class ObtenerSolicitudRepository {
         return solicitudRepositoryDataAdapter.findByReclamoId(idReclamo)
                 .map(solicitudData -> objectMapper.map(solicitudData, Solicitud.class));
     }
+
+    public List<Solicitud> getAllReclamo(){
+        return solicitudRepositoryDataAdapter.findAllReclamo()
+                .stream()
+                .map(solicitudData -> objectMapper.map(solicitudData, Solicitud.class))
+                .collect(Collectors.toList());
+    }
 }

@@ -8,6 +8,8 @@ import org.btg.usecase.ReclamoUseCase;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/solicitud", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
@@ -28,5 +30,11 @@ public class ReclamosController {
         reclamoUseCase.saveReclamo(idSolicitud, Reclamo.reclamoBuilder()
                 .descripcionSolicitud(reclamoDto.getDescripcionSolicitud())
                 .build());
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/reclamo")
+    public List<Solicitud> getAllReclamo() {
+        return reclamoUseCase.getAllReclamo();
     }
 }

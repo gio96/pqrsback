@@ -9,6 +9,7 @@ import org.btg.usecase.exceptions.SolicitudException;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,6 +25,10 @@ public class ReclamoUseCase {
 
     public Solicitud getReclamo(String idSolicitud, String idReclamo) {
         return reclamoGateway.getReclamo(idSolicitud, idReclamo);
+    }
+
+    public List<Solicitud> getAllReclamo(){
+        return reclamoGateway.getAllReclamo();
     }
 
     public void saveReclamo(String idSolicitud, Reclamo reclamo) {

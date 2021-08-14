@@ -8,6 +8,8 @@ import org.btg.peticion.GuardarSolicitudRepository;
 import org.btg.peticion.ObtenerSolicitudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class ReclamoGatewayImpl implements ReclamoGateway {
@@ -24,5 +26,10 @@ public class ReclamoGatewayImpl implements ReclamoGateway {
     @Override
     public void saveReclamo(Solicitud solicitud) {
         guardarSolicitudRepository.saveSolicitud(solicitud);
+    }
+
+    @Override
+    public List<Solicitud> getAllReclamo() {
+        return obtenerSolicitudRepository.getAllReclamo();
     }
 }
