@@ -23,8 +23,8 @@ public class ReclamoUseCase {
     private final ReclamoGateway reclamoGateway;
     private final SolicitudGateway solicitudGateway;
 
-    public Solicitud getReclamo(String idSolicitud, String idReclamo) {
-        return reclamoGateway.getReclamo(idSolicitud, idReclamo);
+    public Solicitud getReclamo(String idReclamo) {
+        return reclamoGateway.getReclamo(idReclamo);
     }
 
     public List<Solicitud> getAllReclamo(){

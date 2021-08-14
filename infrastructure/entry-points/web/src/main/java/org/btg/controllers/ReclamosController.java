@@ -19,9 +19,9 @@ public class ReclamosController {
 
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/{idSolicitud}/reclamo/{idReclamo}")
-    public Solicitud getReclamo(@PathVariable String idSolicitud, @PathVariable String idReclamo) {
-        return reclamoUseCase.getReclamo(idSolicitud, idReclamo);
+    @GetMapping("/reclamo/{idReclamo}")
+    public Solicitud getReclamo(@PathVariable String idReclamo) {
+        return reclamoUseCase.getReclamo(idReclamo);
     }
 
     @CrossOrigin(origins = "*")

@@ -5,7 +5,7 @@ import org.btg.entities.Solicitud;
 import java.util.List;
 
 public interface ReclamoGateway {
-    Solicitud getReclamo(String idPeticion, String idReclamo);
+    Solicitud getReclamo(String idReclamo);
 
     void saveReclamo(Solicitud solicitud);
 

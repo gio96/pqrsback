@@ -18,7 +18,7 @@ public class ReclamoGatewayImpl implements ReclamoGateway {
     private final ObtenerSolicitudRepository obtenerSolicitudRepository;
 
     @Override
-    public Solicitud getReclamo(String idPeticion, String idReclamo) {
+    public Solicitud getReclamo(String idReclamo) {
         return obtenerSolicitudRepository.getReclamoId(idReclamo)
                 .orElse(Solicitud.solicitudBuilder().build());
     }
