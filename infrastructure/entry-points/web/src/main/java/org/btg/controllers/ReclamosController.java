@@ -17,7 +17,6 @@ public class ReclamosController {
 
     private final ReclamoUseCase reclamoUseCase;
 
-
     @CrossOrigin(origins = "*")
     @GetMapping("/reclamo/{idReclamo}")
     public Solicitud getReclamo(@PathVariable String idReclamo) {
