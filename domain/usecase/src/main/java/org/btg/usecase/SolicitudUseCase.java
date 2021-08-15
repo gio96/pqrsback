@@ -28,7 +28,7 @@ public class SolicitudUseCase {
         solicitudGateway.saveSolicitud(validarDatosObligatorios(solicitud));
     }
 
-    public Solicitud validarDatosObligatorios(Solicitud solicitud) {
+    private Solicitud validarDatosObligatorios(Solicitud solicitud) {
         return Optional.of(solicitud)
                 .filter(solicitud1 -> !esVacio(solicitud1.getDescripcionSolicitud()))
                 .map(this::generarFechaRegistro)

@@ -35,18 +35,16 @@ public class ReclamoUseCase {
         reclamoGateway.saveReclamo(validarDatosObligatorios(idSolicitud, reclamo));
     }
 
-    public Solicitud validarDatosObligatorios(String idSolicitud, Reclamo reclamo) {
+    private Solicitud validarDatosObligatorios(String idSolicitud, Reclamo reclamo) {
         return Optional.of(reclamo)
                 .filter(reclamo1 -> !esVacio(reclamo1.getDescripcionSolicitud()))
                 .map(reclamo1 -> verificarCreacionReclamo(reclamo1, idSolicitud))
-                //.map(this::generarFechaRegistro)
                 .orElseThrow(SolicitudException.Type.SOLICITUD_NOT_FULL::build);
     }
 
     private Solicitud verificarCreacionReclamo(Reclamo reclamo, String idSolicitud) {
         return Optional.of(getSolicitudId.apply(solicitudGateway, idSolicitud))
                 .filter(solicitud -> Objects.isNull(solicitud.getReclamo()))
-                //.filter(solicitud -> Objects.isNull(solicitud.getRespuestaAdministrativa()))
                 .filter(this::validarFechaSolicitud)
                 .map(solicitud -> generarFechaReclamo(solicitud, reclamo))
                 .orElseThrow(SolicitudException.Type.RECLAMO_NOT_ABLE::build);
